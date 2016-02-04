@@ -2,5 +2,6 @@
   .col-md-8.col-md-offset-2
     h3
       |Briefcase #{@briefcase.name}
-    div
-      = @stocks_data
+    p
+      = link_to 'Edit', edit_briefcase_path(@briefcase), class: 'btn btn-xs btn-default'
+    div#flot style= 'height: 500px;'

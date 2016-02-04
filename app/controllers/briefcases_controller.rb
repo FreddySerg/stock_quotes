@@ -19,8 +19,8 @@ class BriefcasesController < ApplicationController
   def show
     yahoo_client = YahooFinance::Client.new
     @briefcase = current_user.briefcases.find(params[:id])
-    @stocks_data = @briefcase.stocks.map do |stock|
-      data = yahoo_client.historical_quotes(stock.code, { start_date: Time::now - 2.years, end_date: Time::now }).map{ |d| { date: d.trade_date, value: d.open.to_f } }
+    gon.stocks_data = @briefcase.stocks.map do |stock|
+      data = yahoo_client.historical_quotes(stock.code, { start_date: Time::now - 2.years, end_date: Time::now }).map{ |d| [ d.trade_date.to_time.to_i * 1000, d.open.to_f ] }
       { stock.name => data.reverse }
     end
   end
@@ -47,6 +47,6 @@ class BriefcasesController < ApplicationController
   private
 
   def briefcase_params
-    params.require(:briefcase).permit(:id, :name, briefcases_stocks_attributes: [:id, :stock_id])
+    params.require(:briefcase).permit(:id, :name, briefcases_stocks_attributes: [:id, :stock_id, :_destroy])
   end
 end

@@ -14,4 +14,33 @@
 //= require jquery_ujs
 //= require bootstrap/dist/js/bootstrap.min
 //= require jquery_nested_form
+//= require Flot/jquery.flot.js
+//= require Flot/jquery.flot.time
 //= require_tree .
+
+$(function(){
+  if (gon.stocks_data != undefined) {
+    var dataset = [];
+    $.each(gon.stocks_data, function(index, object){
+      var obj = {};
+      $.each(object, function(key, element) {
+        obj.label = key;
+        obj.data = element;
+      });
+      dataset.push(obj)
+    });
+    $.plot($("#flot"), dataset, {
+      'series': {
+        'lines': {
+          'show': true
+        }
+      },
+      'legend': {
+        'show': true
+      },
+      'xaxis': {
+        mode: "time"
+      }
+    });
+  }
+});

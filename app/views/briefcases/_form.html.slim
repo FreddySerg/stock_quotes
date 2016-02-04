@@ -7,6 +7,9 @@
     .form-group
       = assoc.label :stock_id, 'Stock name'
       = assoc.select :stock_id, Stock.all.map{ |s| ["#{s.name} (#{s.code})", s.id]}, {}, class: 'form-control'
+      = assoc.label :_destroy do
+        = assoc.check_box :_destroy
+        |Destroy
   p
     = f.link_to_add "Add a stock", :briefcases_stocks
 
