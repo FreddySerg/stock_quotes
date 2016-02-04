@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Create Stocks
+{
+  'S&P 500' => '^GSPC',
+  'Dow Jones Industrial Average' => '^DJI',
+  'NASDAQ Biotechnology' => '^NBI',
+  'NYSE FINANCIAL INDEX' => '^NYK',
+  'EURONEXT 100' => '^N100'
+}.each_pair do |k, v|
+  Stock.create(name: k, code: v) unless Stock.find_by code: v
+end

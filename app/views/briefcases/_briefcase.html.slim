@@ -1,0 +1,15 @@
+tr
+  td
+    = briefcase.id
+  td
+    = briefcase.name
+  td
+    - briefcase.stocks.each do |s|
+      div
+        |#{s.name} (#{s.code})
+  td
+    = link_to 'Show', briefcase, class: 'btn btn-xs btn-info'
+  td
+    = link_to 'Edit', edit_briefcase_path(briefcase), class: 'btn btn-xs btn-primary'
+  td
+    = link_to 'Destroy', briefcase, method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }

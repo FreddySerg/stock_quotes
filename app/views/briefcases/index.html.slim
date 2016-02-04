@@ -1,0 +1,22 @@
+.row
+  .col-md-8.col-md-offset-2
+    h3
+      |Briefcases
+    p
+      = link_to 'Create', new_briefcase_path, class: 'btn btn-xs btn-default'
+    - if @briefcases.exists?
+      table.table
+        tr
+          th
+            |ID
+          th
+            |Name
+          th
+            |stocks
+          th
+          th
+          th
+        = render @briefcases
+    - else
+      p
+        |Not found

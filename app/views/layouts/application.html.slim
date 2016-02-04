@@ -7,4 +7,29 @@ html
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body
-    = yield
+    .container-fluid
+      - if user_signed_in?
+        .row
+          .navbar.navbar-default
+            .container-fluid
+              .navbar-header
+                button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"
+                  span class="sr-only"
+                    |Toggle navigation
+                  span class="icon-bar"
+                  span class="icon-bar"
+                  span class="icon-bar"
+                = link_to 'Stocks', 'javascript:', class: 'navbar-brand'
+
+              .collapse.navbar-collapse#bs-example-navbar-collapse-1
+                ul.nav.navbar-nav
+                  li
+                    = link_to 'Briefcases', briefcases_path
+
+                ul.nav.navbar-nav.navbar-right
+                  li
+                    = link_to current_user.email, edit_user_registration_path
+                  li
+                    = link_to 'Logout', destroy_user_session_path, method: :delete
+
+      = yield

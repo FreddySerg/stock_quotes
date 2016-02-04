@@ -20,6 +20,7 @@
   ],
   "dependencies": {
     "jquery": "^2.2.0",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "Flot": "flot#^0.8.3"
   }
 }
