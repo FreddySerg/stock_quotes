@@ -12,6 +12,7 @@
 /db/schema.rb
 /.ruby-gemset
 /vendor/assets/components
+/.byebug_history
 
 # Ignore all logfiles and tempfiles.
 /log/*

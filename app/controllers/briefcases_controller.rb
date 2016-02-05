@@ -17,21 +17,10 @@ class BriefcasesController < ApplicationController
   end
 
   def show
-    yahoo_client = YahooFinance::Client.new
     @briefcase = current_user.briefcases.find(params[:id])
-    briefcase_data = {}
-    gon.stocks_data = @briefcase.stocks.map do |stock|
-      data = yahoo_client.historical_quotes(stock.code, { start_date: Time::now - 2.years, end_date: Time::now }).map do |d|
-        if briefcase_data.has_key?(d.trade_date.to_time.to_i * 1000)
-          briefcase_data[d.trade_date.to_time.to_i * 1000] += d.open.to_f
-        else
-          briefcase_data[d.trade_date.to_time.to_i * 1000] = d.open.to_f
-        end
-        [ d.trade_date.to_time.to_i * 1000, d.open.to_f ]
-      end
-      { stock.name => data.reverse }
-    end
-    gon.briefcase_data = briefcase_data.map{ |k, v| [k, v] }.reverse
+    plot_data = @briefcase.plot_data
+    gon.stocks_data = plot_data[:stocks]
+    gon.briefcase_data = plot_data[:briefcase]
   end
 
   def edit
