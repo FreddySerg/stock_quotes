@@ -19,17 +19,9 @@
 //= require_tree .
 
 $(function(){
-  if (gon.stocks_data != undefined) {
+  if (gon.stocks_data != undefined && gon.briefcase_data != undefined) {
     var dataset = [];
-    $.each(gon.stocks_data, function(index, object){
-      var obj = {};
-      $.each(object, function(key, element) {
-        obj.label = key;
-        obj.data = element;
-      });
-      dataset.push(obj)
-    });
-    $.plot($("#flot"), dataset, {
+    var options = {
       'series': {
         'lines': {
           'show': true
@@ -41,6 +33,16 @@ $(function(){
       'xaxis': {
         mode: "time"
       }
+    }
+    $.each(gon.stocks_data, function(index, object){
+      var obj = {};
+      $.each(object, function(key, element) {
+        obj.label = key;
+        obj.data = element;
+      });
+      dataset.push(obj)
     });
+    $.plot($("#flot-stock"), dataset, options);
+    $.plot($("#flot-briefcase"), [{ 'data': gon.briefcase_data }], options);
   }
 });

@@ -4,4 +4,9 @@
       |Briefcase #{@briefcase.name}
     p
       = link_to 'Edit', edit_briefcase_path(@briefcase), class: 'btn btn-xs btn-default'
-    div#flot style= 'height: 500px;'
+    h4
+      |Stock quotes
+    div#flot-stock style= 'height: 500px;'
+    h4
+      |Briefcase quotes
+    div#flot-briefcase style= 'height: 500px;'

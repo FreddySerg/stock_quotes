@@ -1,28 +1,17 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Приложение формирует портфель из акций, в котором можно увидеть стоимость акций и портфеля в целом за последние 2 года. Используется библиотека ruby 2.3.0, база данных postgresql
 
-Things you may want to cover:
+Затраченное время:
+1. Инициализация приложения, подключение необходимых библиотек, настройка bower - 1 час
+2. Создание основных моделей, авторизация, регистрация пользователей, создание портфелей, bootstrap - 1 час
+3. Yahoo finance, исследование и понимание акций, как получить данные, настройка графиков - 1 час
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Для запуска проекта необходимо:
+1. Создать файлы config/database.yml и config/secrets.yml по примерам config/database.yml.sample и config/secrets.yml.sample соответственно, указать имя пользователя и пароль для базы данных в config/database.yml(используется postgresql).
+2. Установить nodejs(5.0.0) и npm(3.3.9)
+3. npm install bower -g
+4. bundle install
+5. bower install
+6. rake db:create && rake db:migrate && rake db:seed
+7. rails s
